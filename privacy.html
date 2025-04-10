@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated Title -->
+    <title>Privacy Policy - Hershey 🎷</title>
+    <style>
+        /* Same styles as terms.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            padding: 25px;
+            max-width: 800px;
+            margin: 20px auto;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #3498db;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p, li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        code { /* Style for inline code like commands/endpoints */
+            background-color: #e9ecef;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .last-updated {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .disclaimer {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            color: #856404;
+        }
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy for Hershey 🎷</h1>
+    <p class="last-updated"><strong>Last Updated:</strong> April 11, 2025</p>
+
+    <h2>1. Introduction</h2>
+    <p>Welcome to Hershey 🎷 ("the Bot"), operated by LFuse (@lfuse on Discord). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you interact with the Bot on Discord. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not use the Bot.</p>
+
+    <p class="disclaimer"><strong>IMPORTANT LEGAL DISCLAIMER:</strong> This is a template provided for informational purposes only and does not constitute legal advice. You should consult with a qualified legal professional to ensure compliance with all applicable laws (like GDPR, CCPA) and platform requirements (Discord, Spotify, etc.).</p>
+
+    <h2>2. Collection of Your Information</h2>
+    <p>We may collect information about you in a variety of ways when you interact with the Bot:</p>
+    <ul>
+        <li><strong>Discord User Information:</strong> When you use Bot commands, we receive and store your Discord User ID to associate data with your account. We may also temporarily use your Username/Tag for display purposes in command responses.</li>
+        <li><strong>Spotify Account Information (via OAuth):</strong> When you use the <code>/connect</code> command and grant authorization via Spotify, we collect and securely store:
+            <ul>
+                <li>Your Spotify User ID (to link accounts).</li>
+                <li>Spotify API Access Tokens and Refresh Tokens (necessary to access Spotify data on your behalf).</li>
+                <li>Token expiry times (to manage token refresh).</li>
+            </ul>
+        </li>
+        <li><strong>Spotify Listening History (User Provided):</strong> Via the <code>/upload</code> command, you provide your Spotify Extended Streaming History (<code>.zip</code> containing <code>Streaming_History_*.json</code>). We parse and store: timestamp (<code>ts</code>), track name (<code>master_metadata_track_name</code>), artist name (<code>master_metadata_album_artist_name</code>), and milliseconds played (<code>ms_played</code>).</li>
+        <li><strong>Spotify Listening History (Live Tracking):</strong> Periodically, the Bot uses the Spotify API (<code>/me/player/recently-played</code> endpoint) to fetch recently played tracks. We store: timestamp (<code>played_at</code>), track name (<code>track.name</code>), artist name(s) (<code>track.artists</code>), and track duration (<code>track.duration_ms</code>).</li>
+        <li><strong>Spotify Profile Data (API Fetch for Genres):</strong> The <code>/top-genres</code> command uses the Spotify API (<code>/me/top/artists</code> endpoint) to fetch your top artists for a selected period. The genres associated with these artists are aggregated temporarily to determine and display your top genres. This aggregated genre list is <strong>not</strong> permanently stored alongside your listening history.</li>
+        <li><strong>Command Usage Data (Optional - Enable if Implemented):</strong> [Currently Disabled/If Enabled: We log basic command usage (command name, timestamp, user ID) for debugging and improving the Bot. We do not log user message content.] <em>(Confirm if you are logging this and be specific)</em>.</li>
+    </ul>
+
+    <h2>3. Use of Your Information</h2>
+    <p>We use the collected information to:</p>
+    <ul>
+        <li>Link your Discord and Spotify accounts via the <code>/connect</code> command.</li>
+        <li>Process, store, and manage your listening history from both uploads and live tracking.</li>
+        <li>Calculate and display your listening statistics (<code>/top-songs</code>, <code>/top-artists</code>, <code>/top-genres</code>) based on stored history or fetched API data.</li>
+        <li>Authenticate with the Spotify API using your stored tokens.</li>
+        <li>Generate AI commentary (<code>/roast</code>, <code>/compare</code>) using anonymized track/artist data sent to the Google Gemini API.</li>
+        <li>Operate, maintain, and improve the Bot.</li>
+        <li>Troubleshoot issues and provide support.</li>
+        <li>Comply with legal requirements.</li>
+    </ul>
+
+    <h2>4. Storage of Your Information</h2>
+    <p>Your collected data (Discord ID, Spotify ID, Spotify Tokens, processed listening history) is stored in a <strong>local SQLite database file</strong> on the private server hosting the Bot. We implement reasonable security measures to protect this data. Tokens are essential for accessing the Spotify API on your behalf.</p>
+    <!-- Optional: You can be more specific about the server location if required/comfortable, e.g., "located in the United States" -->
+
+    <h2>5. Disclosure of Your Information / Third-Party Services</h2>
+    <p>We do not sell or rent your personal information. Information may be shared only as follows:</p>
+    <ul>
+        <li><strong>Spotify API:</strong> Required for fetching live history, currently playing song, top artists/genres using your authorized tokens. Subject to Spotify's Privacy Policy.</li>
+        <li><strong>Google AI (Gemini API):</strong> For <code>/roast</code> and <code>/compare</code>, lists of track/artist names (without identifiers or play counts) are sent to Google's API. Subject to Google's Privacy Policy and AI Terms.</li>
+        <li><strong>Legal Requirements:</strong> If required by law, subpoena, or other legal process, or to protect rights and safety.</li>
+        <li><strong>Bot Maintainer (LFuse):</strong> May access logs or database entries containing user IDs or command data strictly for troubleshooting and maintenance purposes.</li>
+    </ul>
+
+    <h2>6. User Rights and Data Management</h2>
+    <p>You have rights concerning your data:</p>
+    <ul>
+        <li><strong>Access:</strong> View your generated stats via bot commands.</li>
+        <li><strong>Correction:</strong> Managed via your Discord and Spotify account settings.</li>
+        <li><strong>Deletion:</strong> To delete your stored Spotify connection, tokens, and all associated listening history from the Bot's database, please contact <strong>LFuse</strong> directly via Discord (@lfuse) or the support server (<a href="https://discord.gg/kB5D658vbT" target="_blank" rel="noopener noreferrer">https://discord.gg/kB5D658vbT</a>). We will process verifiable requests within 30 days. Deletion is permanent. Revoking app access in Spotify stops future data collection but does not automatically delete stored data; please use the contact method for deletion.</li>
+    </ul>
+
+    <h2>7. Data Retention</h2>
+    <p>We retain your account connection information (IDs, tokens) and listening history indefinitely to provide the Bot's features, unless you request deletion as described in Section 6.</p>
+  
+    <h2>8. Policy for Children</h2>
+    <p>The Bot is not directed at children under 13 (or the relevant age of digital consent, e.g., 16 in the EU/UK under GDPR). We do not knowingly collect their data. If we learn such data has been collected, we will delete it.</p>
+
+    <h2>9. Changes to This Privacy Policy</h2>
+    <p>We may update this policy. Changes will be posted at <strong>[Link to this document on GitHub Pages]</strong> with an updated "Last Updated" date. Please review periodically.</p> <!-- FILL IN URL ONCE HOSTED -->
+
+    <h2>10. Contact Us</h2>
+    <div class="contact-info">
+        <p>For questions about this Privacy Policy, contact LFuse:</p>
+        <p>Email: <a href="mailto:ntatschool@gmail.com">ntatschool@gmail.com</a></p>
+        <p>Discord User: @lfuse</p>
+        <p>Support Server: <a href="https://discord.gg/kB5D658vbT" target="_blank" rel="noopener noreferrer">https://discord.gg/kB5D658vbT</a></p>
+    </div>
+
+</body>
+</html>
